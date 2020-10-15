@@ -86,6 +86,12 @@ public class DownloadFileTask implements Callable<String> {
 
         } catch (Exception e) {
 //            log.error("The downloadFile() method did not complete");
+        } finally {
+            try {
+                channel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
         InputStream inputStream = new ByteArrayInputStream(baos.toByteArray());
         FileOutputStream fileOutputStream = new FileOutputStream(fileDir + fileName);
