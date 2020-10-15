@@ -41,6 +41,7 @@ public class HelloWorldServer {
     int port = 50051;
     server = ServerBuilder.forPort(port)
         .addService((BindableService) new CommandAndControlImpl())
+            .addService((BindableService) new FileServiceImpl())
         .build()
         .start();
     logger.info("Server started, listening on " + port);
