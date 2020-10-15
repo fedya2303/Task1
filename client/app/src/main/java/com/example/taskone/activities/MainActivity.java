@@ -1,6 +1,8 @@
 package com.example.taskone.activities;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
         loadInterstitialAd(mInterstitialAdUnitId);
 
         sendReqButton.setOnClickListener(view -> {
-            viewModel.sendRequest(hostEditText.getText().toString(), portEditText.getText().toString());
+            if ("1".contentEquals(responseText.getText())) {
+                viewModel.downloadFile(getFilesDir(), getApplicationContext());
+            } else {
+                viewModel.sendRequest(hostEditText.getText().toString(), portEditText.getText().toString());
+            }
         });
 
         viewModel.getNumber().observe(this,

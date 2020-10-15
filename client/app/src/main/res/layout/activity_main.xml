@@ -46,6 +46,7 @@ android:orientation="vertical" >
             android:text="@string/response_txt" />
 
         <TextView
+            android:text="0"
             android:id="@+id/grpc_response_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
